@@ -20,24 +20,28 @@ public class BoardGameImpl implements IBoardGame {
     }
 
     @Override
-    public boolean TakeSlot(boolean isX,int row, int column){
+    public boolean TakeSlot(boolean isX, int row, int column){
         if(this.boardSlot[row][column] == null){
             this.boardSlot[row][column] = isX;
-            if(isX){
-                this.sumOfX[0] += row;
-                this.sumOfX[1] += column;
-                this.xTurnNumber += 1;
-            }
-            else{
-                this.sumOfO[0] += row;
-                this.sumOfO[1] += column;
-                this.oTurnNumber += 1;
-            }
+            addValueOfChecker(isX, row, column);
             return true;
         }
         return false;
     }
-    
+
+    public void addValueOfChecker(boolean isX,int row, int column){
+        if(isX){
+            this.sumOfX[0] += row;
+            this.sumOfX[1] += column;
+            this.xTurnNumber += 1;
+        }
+        else{
+            this.sumOfO[0] += row;
+            this.sumOfO[1] += column;
+            this.oTurnNumber += 1;
+        }
+    }
+
     public int getTotalTurns() {
         return this.xTurnNumber + this.oTurnNumber;
     }
