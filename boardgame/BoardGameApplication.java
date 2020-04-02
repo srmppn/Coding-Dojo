@@ -21,13 +21,15 @@ public class BoardGameApplication {
             System.out.print("Enter the slot row n column: ");
             int row = sn.nextInt();
             int column = sn.nextInt();
-            app.boardGame.TakeSlot(competitorTurns, row, column);
+            boolean hasTakeSlot = app.boardGame.TakeSlot(competitorTurns, row, column);
+            if(hasTakeSlot){
+                competitorTurns = !competitorTurns;
+            }
             String winner = app.boardGame.GetWinner();
             if(winner != null){
                 System.out.println("The winner's " + winner);
                 break;
             }
-            competitorTurns = !competitorTurns;
             System.out.println("----------------------------------");
         }
     }
