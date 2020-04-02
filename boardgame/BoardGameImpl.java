@@ -18,7 +18,7 @@ public class BoardGameImpl implements IBoardGame {
         }
         return null;
     }
-    
+
     @Override
     public boolean TakeSlot(boolean isX,int row, int column){
         if(this.boardSlot[row][column] == null){
@@ -36,5 +36,9 @@ public class BoardGameImpl implements IBoardGame {
             return true;
         }
         return false;
+    }
+    
+    public int getTotalTurns() {
+        return this.xTurnNumber + this.oTurnNumber;
     }
 }

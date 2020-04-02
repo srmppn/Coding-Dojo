@@ -3,20 +3,20 @@ package boardgame;
 import java.util.Scanner;
 
 public class BoardGameApplication {
-    private IBoardGame boardGame;
-
-    public BoardGameApplication(IBoardGame injectGame){
-        this.boardGame =  injectGame;
-    }
-
+    private BoardGameImpl boardGame;
     public static void main(String[] args){
         Scanner sn = new Scanner(System.in);
-        BoardGameApplication app = new BoardGameApplication(new BoardGameImpl());
+        BoardGameApplication app = new BoardGameApplication();
+        app.boardGame = new BoardGameImpl();
         // init
         System.out.print("Who goes first ? X or O : ");
         boolean competitorTurns = sn.nextLine().toLowerCase().equals("x");
         System.out.println("----------------------------------");
         while(true){
+            if(app.boardGame.getTotalTurns() > 9){
+                System.out.println("It's a tie");
+                break;
+            }
             System.out.println((competitorTurns ? "X" : "O") + "'s turn");
             System.out.print("Enter the slot row n column: ");
             int row = sn.nextInt();
